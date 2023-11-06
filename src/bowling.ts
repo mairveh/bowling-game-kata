@@ -25,11 +25,11 @@ function convertToScore(scoreString: string, calculateFor: 1 | 2): number {
 
 function calculateTotalScore(sequence : string): number {
 
-    const sequenceArray = sequence.split(" ")
-    const sequenceLength = sequenceArray.length
-
     let totalScore = 0
-    for(let i=0; i<10; i++) {
+    for(let i=0; sequence && i<10; i++) {
+        const sequenceArray = sequence.split(" ")
+        const sequenceLength = sequenceArray.length
+
         if (sequenceArray[i]==='X') {
             totalScore += 10 + convertToScore(sequenceArray[i+1], 2) + convertToScore(sequenceArray[i+2], 2) 
         }

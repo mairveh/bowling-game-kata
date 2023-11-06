@@ -20,15 +20,24 @@ describe("test counting scores for a bowling game", () => {
     //Assert
     expect(result).toBe(expectedResult);
   });
-  
+
   //Arrange
-  it("test 21 rolls: 10 pairs of 5 and spare, with a final 5", () => {
-    const input = "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5";
-    const expectedResult = 90;
+  it("test 20 rolls: varied combination", () => {
+    const input = "9- 91 9/ 11 -9 12 X 9- 9- 1-";
+    const expectedResult = 91;
     //Act
     const result = getTotalScore(input);
     //Assert
     expect(result).toBe(expectedResult);
   });
 
+  //Arrange
+  it("test 21 rolls: 10 pairs of 5 and spare, with a final 5", () => {
+    const input = "5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/ 5/5";
+    const expectedResult = 150;
+    //Act
+    const result = getTotalScore(input);
+    //Assert
+    expect(result).toBe(expectedResult);
+  });
 });

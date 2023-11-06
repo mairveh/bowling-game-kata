@@ -1,5 +1,4 @@
 function convertToScore(scoreString: string, calculateFor: 1 | 2): number {
-    console.log("convert score for: " + scoreString + " for the next " + calculateFor + " scores")
 
     if (scoreString==="X" ) {
         //strike
@@ -29,24 +28,24 @@ function calculateTotalScore(sequence : string): number {
     const sequenceArray = sequence.split(" ")
     const sequenceLength = sequenceArray.length
 
-    console.log("input scores: " + sequenceArray + ` length ${sequenceLength}`)
-
     let totalScore = 0
     for(let i=0; i<10; i++) {
         if (sequenceArray[i]==='X') {
             totalScore += 10 + convertToScore(sequenceArray[i+1], 2) + convertToScore(sequenceArray[i+2], 2) 
-            console.log("total score X: " + totalScore + ` index: ${i}`)
         }
-        else if(sequenceArray.includes("/")) {
-            totalScore += 10 + convertToScore(sequenceArray[i+1], 1)
-            console.log("total score /: " + totalScore + ` index: ${i}`)
+        else if(sequenceArray[i].includes("/")) {
+            if(i == sequenceLength-1) {
+                //if there's a spare in the final roll, the next roll would be included in the same roll therefore i+1 will be undefined
+                totalScore += 10 + convertToScore(sequenceArray[i][2], 1)
+            }
+            else {
+                totalScore += 10 + convertToScore(sequenceArray[i+1], 1)
+            }
         }
         else {
-            totalScore += parseInt(sequenceArray[i], 2)
-            console.log("total score integer: " + totalScore + ` index: ${i}`)
+            totalScore += convertToScore(sequenceArray[i], 2)
         } 
     }
- 
     
   return totalScore
 }
